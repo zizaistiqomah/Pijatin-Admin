@@ -32,25 +32,97 @@
                 </a>
             </li>
 
-            <!-- Layanan -->
-            <li>
-                <a href="{{ route('layanan') }}" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-teal-400 transition-colors duration-200 {{ request()->routeIs('layanan*') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" class="w-5 h-5 fill-current">
-                        <path d="M17.9827 4.9993C17.827 3.5934 16.6349 2.5 15.1875 2.5H10.8125C9.36506 2.5 8.17301 3.5934 8.01724 4.9993L5.8125 5C4.2592 5 3 6.2592 3 7.8125V24.6875C3 26.2407 4.2592 27.5 5.8125 27.5H11.7517C11.7428 27.2594 11.7674 27.011 11.8303 26.7594L12.1139 25.625H5.8125C5.29474 25.625 4.875 25.2052 4.875 24.6875V7.8125C4.875 7.29474 5.29474 6.875 5.8125 6.875L8.47377 6.87525C8.97834 7.62887 9.83746 8.125 10.8125 8.125H15.1875C16.1625 8.125 17.0218 7.62884 17.5263 6.8752L20.1875 6.875C20.7052 6.875 21.125 7.29474 21.125 7.8125V14.8258C21.6714 14.3255 22.3201 13.9998 23 13.8485V7.8125C23 6.2592 21.7407 5 20.1875 5L17.9827 4.9993ZM10.8125 4.375H15.1875C15.7052 4.375 16.125 4.79474 16.125 5.3125C16.125 5.83026 15.7052 6.25 15.1875 6.25H10.8125C10.2947 6.25 9.875 5.83026 9.875 5.3125C9.875 4.79474 10.2947 4.375 10.8125 4.375ZM14.695 21.25H8C7.48224 21.25 7.0625 21.6698 7.0625 22.1875C7.0625 22.7052 7.48224 23.125 8 23.125H12.9788C13.1597 22.839 13.3725 22.5725 13.614 22.331L14.695 21.25ZM13 18.125H8C7.48224 18.125 7.0625 17.7052 7.0625 17.1875C7.0625 16.6698 7.48224 16.25 8 16.25H13C13.5177 16.25 13.9375 16.6698 13.9375 17.1875C13.9375 17.7052 13.5177 18.125 13 18.125ZM18 13.125H8C7.48224 13.125 7.0625 12.7052 7.0625 12.1875C7.0625 11.6697 7.48224 11.25 8 11.25H18C18.5177 11.25 18.9375 11.6697 18.9375 12.1875C18.9375 12.7052 18.5177 13.125 18 13.125ZM21.8749 15.8369L14.4967 23.2149C14.0666 23.645 13.7615 24.184 13.6139 24.7743L13.0417 27.0626C12.793 28.0578 13.6945 28.9592 14.6896 28.7104L16.978 28.1382C17.5681 27.9907 18.1071 27.6856 18.5374 27.2554L25.9154 19.8774C27.0311 18.7616 27.0311 16.9526 25.9154 15.8369C24.7996 14.721 22.9906 14.721 21.8749 15.8369Z" />
-                    </svg>
-                    <span>Order</span>
-                </a>
-            </li>
-
-            <!-- Pesanan -->
-            <li>
-                <a href="{{ route('pesanan') }}" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-teal-400 transition-colors duration-200 {{ request()->routeIs('pesanan*') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" class="w-5 h-5 fill-current">
+            <!-- Order -->
+            <li x-data="{ open: {{ request()->routeIs('order*') ? 'true' : 'false' }} }" class="relative">
+                <div :class="open ? 'bg-teal-500 text-white' : 'text-teal-600'" 
+                    class="rounded-lg transition-colors duration-200">
+                <!-- parent button --> 
+                <button @click="open = !open"
+                    class="flex items-center justify-between w-full p-3 rounded-lg hover:bg-teal-400 transition-colors duration-200
+                    {{ request()->routeIs('pages.order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                    <div class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" class="w-5 h-5 fill-current">
                         <path d="M21.2879 13.7879C21.654 13.4218 21.654 12.8282 21.2879 12.4621C20.9218 12.096 20.3282 12.096 19.9621 12.4621L13.75 18.6741L11.2879 16.2121C10.9218 15.846 10.3282 15.846 9.96209 16.2121C9.59597 16.5782 9.59597 17.1718 9.96209 17.5379L13.0871 20.6629C13.4532 21.029 14.0468 21.029 14.4129 20.6629L21.2879 13.7879ZM19.9925 5.10561C19.8866 3.64891 18.6713 2.5 17.1875 2.5H12.8125C11.3651 2.5 10.173 3.5934 10.0172 4.9993L7.8125 5C6.2592 5 5 6.2592 5 7.8125V24.6875C5 26.2407 6.2592 27.5 7.8125 27.5H22.1875C23.7407 27.5 25 26.2407 25 24.6875V7.8125C25 6.2592 23.7407 5 22.1875 5L19.9827 4.9993C19.9866 5.03455 19.9899 5.06999 19.9925 5.10561ZM12.8125 8.125H17.1875C18.1625 8.125 19.0218 7.62884 19.5263 6.8752L22.1875 6.875C22.7052 6.875 23.125 7.29474 23.125 7.8125V24.6875C23.125 25.2052 22.7052 25.625 22.1875 25.625H7.8125C7.29474 25.625 6.875 25.2052 6.875 24.6875V7.8125C6.875 7.29474 7.29474 6.875 7.8125 6.875L10.4738 6.87525C10.9783 7.62887 11.8375 8.125 12.8125 8.125ZM12.8125 4.375H17.1875C17.7052 4.375 18.125 4.79474 18.125 5.3125C18.125 5.83026 17.7052 6.25 17.1875 6.25H12.8125C12.2947 6.25 11.875 5.83026 11.875 5.3125C11.875 4.79474 12.2947 4.375 12.8125 4.375Z"/>
                     </svg>
-                    <span>Data Pelanggan</span>
-                </a>
+                        <label>Order</label>
+                    </div>
+                    <!-- Arrow -->
+                    <svg :class="{'rotate-180': open}" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <!-- Submenu -->
+                <ul x-show="open" x-cloak x-transition class="ml-8 mt-2 space-y-1 text-sm">
+                    <li>
+                        <a href="{{ route('pages.order.semua') }}"
+                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
+                            {{ request()->routeIs('order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            <span class="ml-2">↪ Semua</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('pages.order.semua') }}"
+                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
+                            {{ request()->routeIs('order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            <span class="ml-2">↪ Berlangsung</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('pages.order.semua') }}"
+                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
+                            {{ request()->routeIs('order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            <span class="ml-2">↪ Selesai</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+
+
+
+            <!-- Data Customer -->
+            <li x-data="{ open: {{ request()->routeIs('customer*') ? 'true' : 'false' }} }" class="relative">
+                <div :class="open ? 'bg-teal-500 text-white' : 'text-teal-600'" 
+                    class="rounded-lg transition-colors duration-200">
+                <!-- parent button --> 
+                <button @click="open = !open"
+                    class="flex items-center justify-between w-full p-3 rounded-lg hover:bg-teal-400 transition-colors duration-200
+                    {{ request()->routeIs('pesanan') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                    <div class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" class="w-5 h-5 fill-current">
+                        <path d="M21.2879 13.7879C21.654 13.4218 21.654 12.8282 21.2879 12.4621C20.9218 12.096 20.3282 12.096 19.9621 12.4621L13.75 18.6741L11.2879 16.2121C10.9218 15.846 10.3282 15.846 9.96209 16.2121C9.59597 16.5782 9.59597 17.1718 9.96209 17.5379L13.0871 20.6629C13.4532 21.029 14.0468 21.029 14.4129 20.6629L21.2879 13.7879ZM19.9925 5.10561C19.8866 3.64891 18.6713 2.5 17.1875 2.5H12.8125C11.3651 2.5 10.173 3.5934 10.0172 4.9993L7.8125 5C6.2592 5 5 6.2592 5 7.8125V24.6875C5 26.2407 6.2592 27.5 7.8125 27.5H22.1875C23.7407 27.5 25 26.2407 25 24.6875V7.8125C25 6.2592 23.7407 5 22.1875 5L19.9827 4.9993C19.9866 5.03455 19.9899 5.06999 19.9925 5.10561ZM12.8125 8.125H17.1875C18.1625 8.125 19.0218 7.62884 19.5263 6.8752L22.1875 6.875C22.7052 6.875 23.125 7.29474 23.125 7.8125V24.6875C23.125 25.2052 22.7052 25.625 22.1875 25.625H7.8125C7.29474 25.625 6.875 25.2052 6.875 24.6875V7.8125C6.875 7.29474 7.29474 6.875 7.8125 6.875L10.4738 6.87525C10.9783 7.62887 11.8375 8.125 12.8125 8.125ZM12.8125 4.375H17.1875C17.7052 4.375 18.125 4.79474 18.125 5.3125C18.125 5.83026 17.7052 6.25 17.1875 6.25H12.8125C12.2947 6.25 11.875 5.83026 11.875 5.3125C11.875 4.79474 12.2947 4.375 12.8125 4.375Z"/>
+                    </svg>
+                        <label>Data Customer</label>
+                    </div>
+                    <!-- Arrow -->
+                    <svg :class="{'rotate-180': open}" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <!-- Submenu -->
+                <ul x-show="open" x-cloak x-transition class="ml-8 mt-2 space-y-1 text-sm">
+                    <li>
+                        <a href="{{ route('pesanan') }}"
+                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
+                            {{ request()->routeIs('pesanan') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            <span class="ml-2">↪ Akun</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('pesanan') }}"
+                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
+                            {{ request()->routeIs('pesanan') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            <span class="ml-2">↪ Verifikasi</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
 
             <!-- Pelanggan -->
             <li>
@@ -61,16 +133,49 @@
                     <span>Pelanggan</span>
                 </a>
             </li>
+ 
 
-            <!-- Terapis -->
-            <li>
-                <a href="{{ route('terapis') }}" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-teal-400 transition-colors duration-200 {{ request()->routeIs('terapis*') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" class="w-5 h-5 fill-current">
+            <!-- Data Terapis -->
+            <li x-data="{ open: {{ request()->routeIs('terapis*') ? 'true' : 'false' }} }" class="relative">
+                <div :class="open ? 'bg-teal-500 text-white' : 'text-teal-600'" 
+                    class="rounded-lg transition-colors duration-200">
+                <!-- parent button --> 
+                <button @click="open = !open"
+                    class="flex items-center justify-between w-full p-3 rounded-lg hover:bg-teal-400 transition-colors duration-200
+                    {{ request()->routeIs('karyawan') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                    <div class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" class="w-5 h-5 fill-current">
                         <path d="M4.5 6.5C4.5 4.567 6.067 3 8 3H22C23.933 3 25.5 4.567 25.5 6.5V23.5C25.5 25.433 23.933 27 22 27H8C6.067 27 4.5 25.433 4.5 23.5V6.5ZM8 5C7.172 5 6.5 5.672 6.5 6.5V23.5C6.5 24.328 7.172 25 8 25H22C22.828 25 23.5 24.328 23.5 23.5V6.5C23.5 5.672 22.828 5 22 5H8ZM10 7H20V9H10V7ZM10 11H20V13H10V11ZM10 15H16V17H10V15Z"/>
                     </svg>
-                    <span>Data Terapis</span>
-                </a>
+                        <label>Data Terapis</label>
+                    </div>
+                    <!-- Arrow -->
+                    <svg :class="{'rotate-180': open}" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <!-- Submenu -->
+                <ul x-show="open" x-cloak x-transition class="ml-8 mt-2 space-y-1 text-sm">
+                    <li>
+                        <a href="{{ route('karyawan') }}"
+                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
+                            {{ request()->routeIs('karyawan') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            <span class="ml-2">↪ Akun</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('karyawan') }}"
+                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
+                            {{ request()->routeIs('karyawan') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            <span class="ml-2">↪ Register</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+
 
             <!-- Penangguhan -->
             <li>
@@ -97,10 +202,11 @@
     </nav>
 
     <!-- Logout Button at Bottom -->
-    <div class="absolute bottom-4 w-full px-4">
-        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-teal-400 transition-colors duration-200 w-full">
+    <div class="absolute bottom-4 flex px-4 rounded-lg bg-red-500 text-white">
+        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-700 transition-colors duration-200 w-full">
             <img src="{{ asset('images/logout.svg') }}" alt="Logout Icon" class="w-5 h-5">
             <span>Keluar Akun</span>
         </a>
     </div>
 </div>
+

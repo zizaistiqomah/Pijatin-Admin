@@ -18,6 +18,10 @@
     
     <!-- Tailwind CSS CDN (if not using Vite) -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- expand sidebar -->
+    <style>[x-cloak] { display: none !important; }</style>
+
     
     <!-- Custom Styles -->
     <style>
@@ -44,9 +48,14 @@
         <!-- Sidebar -->
         @include('components.sidebar')
 
+        <!-- Alpine.js -->
+        <script src="//unpkg.com/alpinejs" defer></script>
+        
+
+
         
         <!-- Main Content Area -->
-        <div class="flex-1 pl-64">
+        <div class="ml-64 flex-1 min-h-screen p-6" style="background-color: #EBFFF2;">
             @include('components.navbar')
 
             @yield('content')

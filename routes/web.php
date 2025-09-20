@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\OrderController;
+use App\Models\Order;
 
 // Routing Sidebar Super Admin
 Route::get('/', function () {
@@ -58,3 +61,27 @@ Route::get('/superadmin/karyawan/create', function () {
 Route::get('/superadmin/pelanggan/detail-akun', function () {
     return view('pages.SuperAdminPelangganDetailAkun');
 });
+
+
+
+
+
+
+
+
+Route::get('/order/semua', function (Request $request) {
+    $search = $request->get('search');
+
+    // ambil data orders dengan filter search
+    $orders = Order::query()
+        ->when($search, function ($query, $search) {
+            $query->where('customer_name', 'like', "%{$search}%")
+                  ->orWhere('status', 'like', "%{$search}%");
+        })
+        ->latest()
+        ->get();
+
+    return view('pages.order.semua', compact('orders', 'search'));
+})->name('pages.order.semua');
+
+
