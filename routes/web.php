@@ -69,10 +69,12 @@ Route::get('/superadmin/pelanggan/detail-akun', function () {
 
 
 
+
+
 Route::get('/order/semua', function (Request $request) {
     $search = $request->get('search');
 
-    // ambil data orders dengan filter search
+    // Semua data order
     $orders = Order::query()
         ->when($search, function ($query, $search) {
             $query->where('customer_name', 'like', "%{$search}%")
@@ -81,7 +83,19 @@ Route::get('/order/semua', function (Request $request) {
         ->latest()
         ->get();
 
-    return view('pages.order.semua', compact('orders', 'search'));
+    // Dikonfirmasi = pending, menunggu, berlangsung, dijadwalkan
+    $confirmedOrders = Order::whereIn('status', ['pending', 'menunggu', 'berlangsung', 'dijadwalkan','selesai'])->get();
+
+    // Dibatalkan = selesai
+    $canceledOrders = Order::whereIn('status', ['dibatalkan'])->get();
+
+    return view('pages.order.semua', compact('orders', 'confirmedOrders', 'canceledOrders', 'search'));
 })->name('pages.order.semua');
+
+Route::get('/order/{id}/detail', [OrderController::class, 'show'])->name('order.detail');
+
+Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.delete');
+
+
 
 

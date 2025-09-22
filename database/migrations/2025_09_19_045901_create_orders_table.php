@@ -9,13 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_pemesan');
+            $table->string('jenis_layanan');
+            $table->dateTime('jadwal_layanan');
+            $table->enum('status', ['pending', 'menunggu', 'berlangsung', 'dijadwalkan', 'selesai'])->default('pending');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

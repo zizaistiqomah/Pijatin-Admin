@@ -59,22 +59,29 @@
                     <li>
                         <a href="{{ route('pages.order.semua') }}"
                             class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
-                            {{ request()->routeIs('order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
-                            <span class="ml-2">↪ Semua</span>
+                            {{ request()->routeIs('pages.order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            
+                            <img src="{{ asset('images/down-option.png') }}" alt="Down" class="h-4 w-4 ml-2">
+                            <span>Semua</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('pages.order.semua') }}"
+                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
+                            {{ request()->routeIs('pages.order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            
+                            <img src="{{ asset('images/down-option.png') }}" alt="Down" class="h-4 w-4 ml-2">
+                            <span>Berlangsung</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('pages.order.semua') }}"
                             class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
-                            {{ request()->routeIs('order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
-                            <span class="ml-2">↪ Berlangsung</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('pages.order.semua') }}"
-                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
-                            {{ request()->routeIs('order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
-                            <span class="ml-2">↪ Selesai</span>
+                            {{ request()->routeIs('pages.order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            
+                            <img src="{{ asset('images/down-option.png') }}" alt="Down" class="h-4 w-4 ml-2">
+                            <span>Selesai</span>
                         </a>
                     </li>
                 </ul>
@@ -110,14 +117,18 @@
                         <a href="{{ route('pesanan') }}"
                             class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
                             {{ request()->routeIs('pesanan') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
-                            <span class="ml-2">↪ Akun</span>
+                            
+                            <img src="{{ asset('images/down-option.png') }}" alt="Down" class="h-4 w-4 ml-2">
+                            <span>Akun</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('pesanan') }}"
                             class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
                             {{ request()->routeIs('pesanan') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
-                            <span class="ml-2">↪ Verifikasi</span>
+                            
+                            <img src="{{ asset('images/down-option.png') }}" alt="Down" class="h-4 w-4 ml-2">
+                            <span>Verifikasi</span>
                         </a>
                     </li>
                 </ul>
@@ -163,14 +174,18 @@
                         <a href="{{ route('karyawan') }}"
                             class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
                             {{ request()->routeIs('karyawan') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
-                            <span class="ml-2">↪ Akun</span>
+                            
+                            <img src="{{ asset('images/down-option.png') }}" alt="Down" class="h-4 w-4 ml-2">
+                            <span>Akun</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('karyawan') }}"
                             class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
                             {{ request()->routeIs('karyawan') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
-                            <span class="ml-2">↪ Register</span>
+                            
+                            <img src="{{ asset('images/down-option.png') }}" alt="Down" class="h-4 w-4 ml-2">
+                            <span>Register</span>
                         </a>
                     </li>
                 </ul>
