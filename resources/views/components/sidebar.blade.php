@@ -36,10 +36,11 @@
             <li x-data="{ open: {{ request()->routeIs('order*') ? 'true' : 'false' }} }" class="relative">
                 <div :class="open ? 'bg-teal-500 text-white' : 'text-teal-600'" 
                     class="rounded-lg transition-colors duration-200">
-                <!-- parent button --> 
+
+                <!-- Parent button -->
                 <button @click="open = !open"
-                    class="flex items-center justify-between w-full p-3 rounded-lg hover:bg-teal-400 transition-colors duration-200
-                    {{ request()->routeIs('pages.order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                    class="flex items-center justify-between w-full p-3 rounded-lg transition-colors duration-200
+                    {{ request()->routeIs('pages.order.*') ? 'bg-teal-500 text-white' : 'text-teal-600 hover:bg-teal-400' }}">
                     <div class="flex items-center space-x-3">
                         <!-- Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" class="w-5 h-5 fill-current">
@@ -55,11 +56,16 @@
                 </button>
 
                 <!-- Submenu -->
-                <ul x-show="open" x-cloak x-transition class="ml-8 mt-2 space-y-1 text-sm">
+                <ul 
+                    x-show="open || '{{ request()->routeIs('pages.order.*') ? 'true' : 'false' }}' === 'true'" 
+                    x-cloak 
+                    x-transition 
+                    class="ml-8 mt-2 space-y-1 text-sm"
+                >
                     <li>
                         <a href="{{ route('pages.order.semua') }}"
-                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
-                            {{ request()->routeIs('pages.order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                            class="flex items-center space-x-2 p-2 rounded-lg transition-colors duration-200
+                            {{ request()->routeIs('pages.order.semua') ? 'bg-teal-600 text-white' : 'text-teal-600 hover:bg-teal-200' }}">
                             
                             <img src="{{ asset('images/down-option.png') }}" alt="Down" class="h-4 w-4 ml-2">
                             <span>Semua</span>
@@ -67,25 +73,27 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('pages.order.semua') }}"
-                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
-                            {{ request()->routeIs('pages.order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                        <a href="{{ route('pages.order.berlangsung') }}"
+                            class="flex items-center space-x-2 p-2 rounded-lg transition-colors duration-200
+                            {{ request()->routeIs('pages.order.berlangsung') ? 'bg-teal-600 text-white' : 'text-teal-600 hover:bg-teal-200' }}">
                             
                             <img src="{{ asset('images/down-option.png') }}" alt="Down" class="h-4 w-4 ml-2">
                             <span>Berlangsung</span>
                         </a>
                     </li>
+
                     <li>
-                        <a href="{{ route('pages.order.semua') }}"
-                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-teal-700 transition-colors duration-200
-                            {{ request()->routeIs('pages.order.semua') ? 'bg-teal-500 text-white' : 'text-teal-600' }}">
+                        <a href="{{ route('pages.order.selesai') }}"
+                            class="flex items-center space-x-2 p-2 rounded-lg transition-colors duration-200
+                            {{ request()->routeIs('pages.order.selesai') ? 'bg-teal-600 text-white' : 'text-teal-600 hover:bg-teal-200' }}">
                             
                             <img src="{{ asset('images/down-option.png') }}" alt="Down" class="h-4 w-4 ml-2">
                             <span>Selesai</span>
                         </a>
                     </li>
                 </ul>
-            </li>
+
+
 
 
 

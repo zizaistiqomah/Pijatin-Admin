@@ -96,6 +96,14 @@ Route::get('/order/{id}/detail', [OrderController::class, 'show'])->name('order.
 
 Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.delete');
 
+Route::get('/order/berlangsung', [OrderController::class, 'berlangsung'])->name('pages.order.berlangsung');
+
+Route::get('/order/selesai', [OrderController::class, 'selesai'])->name('pages.order.selesai');
+Route::resource('order', OrderController::class);
+
+
+
+
 
 
 

@@ -58,5 +58,22 @@ class OrderController extends Controller
         return redirect()->route('pages.order.semua')->with('success', 'Order berhasil dihapus.');
     }
 
+
+    public function berlangsung()
+    {
+        // Ambil data order dengan status 'Berlangsung'
+        $orders = Order::where('status', 'Berlangsung')->get();
+
+        return view('pages.order.berlangsung', compact('orders'));
+    }
+
+    public function selesai()
+    {
+        $orders = Order::where('status', 'Selesai')->get();
+
+        return view('pages.order.selesai', compact('orders'));
+    }
+
+
     
 }
