@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\OrderController;
 use App\Models\Order;
+use App\Http\ControllersControllers\PelangganController;
+use App\Models\Pelanggan;
+use App\Models\Terapis;
+use App\Http\Controllers\TerapisController;
+use App\Http\Controllers\RatingController;
 
 // Routing Sidebar Super Admin
 Route::get('/', function () {
@@ -70,7 +75,7 @@ Route::get('/superadmin/pelanggan/detail-akun', function () {
 
 
 
-
+//Orders
 Route::get('/order/semua', function (Request $request) {
     $search = $request->get('search');
 
@@ -92,18 +97,23 @@ Route::get('/order/semua', function (Request $request) {
     return view('pages.order.semua', compact('orders', 'confirmedOrders', 'canceledOrders', 'search'));
 })->name('pages.order.semua');
 
+
 Route::get('/order/{id}/detail', [OrderController::class, 'show'])->name('order.detail');
-
 Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.delete');
-
 Route::get('/order/berlangsung', [OrderController::class, 'berlangsung'])->name('pages.order.berlangsung');
-
 Route::get('/order/selesai', [OrderController::class, 'selesai'])->name('pages.order.selesai');
 Route::resource('order', OrderController::class);
 
+//Terapis
+Route::get('/terapis', [TerapisController::class, 'terapis'])
+    ->name('data-terapis.terapis');
+Route::get('/terapis/{id}', [TerapisController::class, 'show'])->name('terapis.detail');
+Route::delete('/terapis/{id}', [TerapisController::class, 'destroy'])->name('terapis.delete');
 
-
-
-
+//Rating & Ulasan 
+Route::get('/rating', [RatingController::class, 'rating'])
+    ->name('data-terapis.rating');
+Route::get('/rating/{id}', [RatingController::class, 'show'])->name('rating.detail');
+Route::delete('/rating/{id}', [TerapisController::class, 'destroy'])->name('rating.delete');
 
 
