@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('navtitle', 'Data Terapis')
+@section('navtitle', 'Data Akun Pelanggan')
 
 @section('content')
 <div class="bg-[#EBFFF2] min-h-screen">
     <!-- Header Judul -->
     <div class="mt-[14px] ml-[26px] mr-[26px] px-6 py-20 bg-[#EBFFF2]  flex justify-between items-center">
-        <h2 class="text-xl  font-bold text-gray-700">Data Terapis</h2>
+        <h2 class="text-xl  font-bold text-gray-700">Data Akun Pelanggan</h2>
     </div>
 
     {{-- Container --}}
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            {{-- Tabel Data Terapis --}}
+            {{-- Tabel Data Pelanggan --}}
             <table class="w-full text-sm text-left">
                 <thead class="text-semi bold bg-[#469D89] text-white">
                     <tr>
@@ -39,37 +39,21 @@
                         <th class="p-2">Jenis Kelamin</th>
                         <th class="p-2">No Ponsel</th>
                         <th class="p-2">Email</th>
-                        <th class="p-2">Status</th>
                         <th class="p-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($terapis as $index => $t)
+                    @foreach ($pelanggan as $index => $t)
                         <tr class="hover:bg-gray-50">
                             <td class="px-4 py-2">{{ $index + 1 }}</td>
                             <td class="px-4 py-2">{{ $t->nama }}</td>
                             <td class="px-4 py-2">{{ $t->jenis_kelamin }}</td>
                             <td class="px-4 py-2">{{ $t->ponsel }}</td>
                             <td class="px-4 py-2">{{ $t->email }}</td>
-                            <td class="px-4 py-2">
-                                @php
-                                    $statusColors = [
-                                        'Tersedia' => 'bg-green-200 text-green-700',
-                                        'Tidak tersedia' => 'bg-red-100 text-red-700',
-                                    ];
-                                    $dotColors = [
-                                        'Tersedia' => 'bg-green-600',
-                                        'Tidak tersedia' => 'bg-red-500',
-                                    ];
-                                @endphp
-                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium {{ $statusColors[$t->status] ?? 'bg-gray-200 text-gray-700' }}">
-                                    <span class="w-2 h-2 mr-2 rounded-full {{ $dotColors[$t->status] ?? 'bg-gray-500' }}"></span>
-                                    {{ ucfirst($t->status) }}
-                                </span>
                             </td>
                             <td class="px-4 py-2 flex space-x-3">
                                 {{-- Tombol Detail --}}
-                                <a href="{{ route('terapis.detail', $t->id) }}" class="text-blue-500 hover:text-blue-700">
+                                <a href="{{ route('pages.data-pelanggan.detail', $t->id) }}" class="text-blue-500 hover:text-blue-700">
                                     <img src="{{ asset('images/detail-icon.png') }}" alt="Detail" class="h-6 w-6">
                                 </a>
 
@@ -79,7 +63,7 @@
                                     <img src="{{ asset('images/trash-can.svg') }}" alt="Delete" class="h-6 w-6">
                                 </button>
 
-                                <form id="delete-form-{{ $t->id }}" action="{{ route('terapis.delete', $t->id) }}" method="POST" style="display:none;">
+                                <form id="delete-form-{{ $t->id }}" action="{{ route('akun.delete', $t->id) }}" method="POST" style="display:none;">
                                     @csrf
                                     @method('DELETE')
                                 </form>
@@ -96,7 +80,7 @@
 <div id="delete-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
     <div class="bg-white p-6 rounded-xl shadow-xl w-96 text-center">
         <img src="{{ asset('images/trash-can.svg') }}" alt="Delete" class="h-20 w-20 mx-auto mb-4">
-        <h2 class="text-lg font-semibold mb-2">Hapus Terapis</h2>
+        <h2 class="text-lg font-semibold mb-2">Hapus Akun Pelanggan</h2>
         <p class="text-gray-600 mb-6">
             Apakah anda yakin ingin menghapus <span id="delete-name" class="font-semibold"></span>?
         </p>

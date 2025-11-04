@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PelangganController as ControllersPelangganController;
 use App\Models\Order;
-use App\Http\ControllersControllers\PelangganController;
 use App\Models\Pelanggan;
 use App\Models\Terapis;
 use App\Http\Controllers\TerapisController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\PelangganController;
 
 // Routing Sidebar Super Admin
 Route::get('/', function () {
@@ -97,7 +98,6 @@ Route::get('/order/semua', function (Request $request) {
     return view('pages.order.semua', compact('orders', 'confirmedOrders', 'canceledOrders', 'search'));
 })->name('pages.order.semua');
 
-
 Route::get('/order/{id}/detail', [OrderController::class, 'show'])->name('order.detail');
 Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.delete');
 Route::get('/order/berlangsung', [OrderController::class, 'berlangsung'])->name('pages.order.berlangsung');
@@ -115,5 +115,29 @@ Route::get('/rating', [RatingController::class, 'rating'])
     ->name('data-terapis.rating');
 Route::get('/rating/{id}', [RatingController::class, 'show'])->name('rating.detail');
 Route::delete('/rating/{id}', [TerapisController::class, 'destroy'])->name('rating.delete');
+
+//Pelanggan
+Route::get('/akun', [PelangganController::class, 'akun'])
+    ->name('pages.data-pelanggan.akun');
+Route::get('/akun/{id}', [PelangganController::class, 'show'])->name('pages.data-pelanggan.detail'); 
+Route::delete('/akun/{id}', [PelangganController::class, 'destroy'])->name('akun.delete'); 
+Route::get('/data-pelanggan.verifikasi', [PelangganController::class, 'verifikasi'])->name('pages.data-pelanggan.verifikasi');
+Route::get('/data-pelanggan.verifikasi/{id}', [PelangganController::class, 'verifikasiDetail'])->name('pages.data-pelanggan.verifikasi.detail');
+Route::get('/data-pelanggan/verifikasi/{id}', [PelangganController::class, 'showVerifikasiDetail'])
+    ->name('pages.data-pelanggan.verifikasi.detail');
+Route::post('/verifikasi/update/{id}/{status}', [PelangganController::class, 'updateStatus'])
+    ->name('verifikasi.update');
+// Aksi approve verifikasi
+Route::post('/data-pelanggan.verifikasi/{id}/approve', [PelangganController::class, 'approveVerifikasi'])
+    ->name('pages.data-pelanggan.verifikasi.approve');
+// Aksi reject verifikasi
+Route::post('/data-pelanggan.verifikasi/{id}/reject', [PelangganController::class, 'rejectVerifikasi'])
+    ->name('pages.data-pelanggan.verifikasi.reject');
+//detail akun pelanggan
+Route::get('/data-pelanggan/akun/{id}', [PelangganController::class, 'detailAkun'])
+    ->name('pages.data-pelanggan.akun.detail');
+//riwayat pemesanan
+Route::get('/data-pelanggan/riwayat-pesanan/{id}', [PelangganController::class, 'riwayatPesanan'])
+    ->name('pages.data-pelanggan.riwayat-pesanan');
 
 
