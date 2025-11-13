@@ -44,12 +44,6 @@ class OrderController extends Controller
         return view('pages.order.semua', compact('orders', 'search', 'confirmedOrders', 'canceledOrders'));
     }
 
-    public function show($id)
-    {
-        $order = Order::findOrFail($id); // cari order berdasarkan ID
-        return view('pages.order.detail', compact('order'));
-    }
-
     public function destroy($id)
     {
         $order = Order::findOrFail($id);
@@ -73,6 +67,34 @@ class OrderController extends Controller
 
         return view('pages.order.selesai', compact('orders'));
     }
+
+
+    public function show($id)
+    {
+        $order = Order::with(['pelanggan', 'terapis'])->findOrFail($id);
+
+        // Hitung total biaya dari harga layanan + layanan tambahan (jika ada)
+        $hargaLayanan = $order->harga_layanan ?? 0;
+        $hargaTambahan = $order->layanan_tambahan_harga ?? 0;
+
+        // total biaya gabungan
+        $order->total_harga = $hargaLayanan + $hargaTambahan;
+
+        // Kirim ke view berdasarkan status
+        switch (strtolower($order->status)) {
+            case 'pending':
+                return view('pages.order.detail-pending', compact('order'));
+            case 'dikonfirmasi':
+                return view('pages.order.detail-dikonfirmasi', compact('order'));
+            case 'berlangsung':
+                return view('pages.order.detail-berlangsung', compact('order'));
+            case 'selesai':
+                return view('pages.order.detail-selesai', compact('order'));
+            default:
+                abort(404);
+        }
+    }
+
 
 
     

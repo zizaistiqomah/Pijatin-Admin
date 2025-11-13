@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="bg-[#EBFFF2] min-h-screen">
+
     <!-- Header Judul -->
     <div class="mt-[14px] ml-[26px] mr-[26px] px-6 py-20 bg-[#EBFFF2] flex justify-between items-center">
         <div class="flex items-center space-x-2">

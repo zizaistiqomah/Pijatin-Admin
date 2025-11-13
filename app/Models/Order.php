@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Pelanggan;
+use App\Models\Terapis;
 
 class Order extends Model
 {
@@ -12,7 +14,18 @@ class Order extends Model
         'nama_pemesan',
         'jenis_layanan',
         'jadwal_layanan',
-        'status'
+        'status',
+        'pelanggan_id',
+        'terapis_id',
+        'layanan',
+        'alamat',
+        'harga_layanan',
+        'tanggal_pesan',
+        'tanggal_layanan',
+        'layanan_tambahan',
+        'durasi',
+        'total_harga',
+        'metode',
     ];
 
     protected $table = 'orders'; 

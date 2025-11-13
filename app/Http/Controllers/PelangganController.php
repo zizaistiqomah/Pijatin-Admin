@@ -131,9 +131,6 @@ class PelangganController extends Controller
         return view('pages.data-pelanggan.riwayat', compact('pelanggan'));
     }
 
-
-
-
     public function riwayatPesanan($id)
     {
         // Ambil pelanggan dari database
@@ -143,7 +140,7 @@ class PelangganController extends Controller
         $riwayat = [
             [
                 'id' => 1,
-                'tanggal' => '2025-10-28',
+                'tanggal' => '2025-10-21',
                 'waktu' => '10:30',
                 'metode' => 'Transfer',
                 'total' => '150.000',
@@ -155,7 +152,7 @@ class PelangganController extends Controller
             ],
             [
                 'id' => 2,
-                'tanggal' => '2025-10-26',
+                'tanggal' => '2025-10-24',
                 'waktu' => '14:00',
                 'metode' => 'Cash',
                 'total' => '120.000',
@@ -167,7 +164,7 @@ class PelangganController extends Controller
             ],
             [
                 'id' => 3,
-                'tanggal' => '2025-10-26',
+                'tanggal' => '2025-10-25',
                 'waktu' => '15:05',
                 'metode' => 'Transfer',
                 'total' => '120.000',
@@ -175,6 +172,42 @@ class PelangganController extends Controller
                 'terapis' => [
                     'nama' => 'Aleraka',
                     'gender' => 'Laki-laki',
+                ],
+            ],
+            [
+                'id' => 4,
+                'tanggal' => '2025-10-26',
+                'waktu' => '16:05',
+                'metode' => 'Transfer',
+                'total' => '120.000',
+                'status' => 'Dibatalkan',
+                'terapis' => [
+                    'nama' => 'Syaila',
+                    'gender' => 'Perempuan',
+                ],
+            ],
+            [
+                'id' => 6,
+                'tanggal' => '2025-10-28',
+                'waktu' => '11:05',
+                'metode' => 'Transfer',
+                'total' => '120.000',
+                'status' => 'Selesai',
+                'terapis' => [
+                    'nama' => 'Ganta',
+                    'gender' => 'Laki-laki',
+                ],
+            ],
+            [
+                'id' => 7,
+                'tanggal' => '2025-10-29',
+                'waktu' => '10:05',
+                'metode' => 'Cash',
+                'total' => '120.000',
+                'status' => 'Selesai',
+                'terapis' => [
+                    'nama' => 'Nada',
+                    'gender' => 'Perempuan',
                 ],
             ],
         ];

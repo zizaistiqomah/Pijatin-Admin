@@ -103,6 +103,12 @@ Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.d
 Route::get('/order/berlangsung', [OrderController::class, 'berlangsung'])->name('pages.order.berlangsung');
 Route::get('/order/selesai', [OrderController::class, 'selesai'])->name('pages.order.selesai');
 Route::resource('order', OrderController::class);
+//detail
+Route::prefix('order')->group(function () {
+    Route::get('/semua/detail/{id}', [OrderController::class, 'show'])->name('order.semua.detail');
+});
+
+
 
 //Terapis
 Route::get('/terapis', [TerapisController::class, 'terapis'])
@@ -139,5 +145,6 @@ Route::get('/data-pelanggan/akun/{id}', [PelangganController::class, 'detailAkun
 //riwayat pemesanan
 Route::get('/data-pelanggan/riwayat-pesanan/{id}', [PelangganController::class, 'riwayatPesanan'])
     ->name('pages.data-pelanggan.riwayat-pesanan');
+
 
 
