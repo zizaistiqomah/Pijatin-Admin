@@ -68,7 +68,6 @@ class OrderController extends Controller
         return view('pages.order.selesai', compact('orders'));
     }
 
-
     public function show($id)
     {
         $order = Order::with(['pelanggan', 'terapis'])->findOrFail($id);
@@ -90,11 +89,14 @@ class OrderController extends Controller
                 return view('pages.order.detail-berlangsung', compact('order'));
             case 'selesai':
                 return view('pages.order.detail-selesai', compact('order'));
+            case 'dijadwalkan':
+                return view('pages.order.detail-dijadwalkan', compact('order'));
+            case 'dibatalkan':
+                return view('pages.order.detail-dibatalkan', compact('order'));
             default:
                 abort(404);
         }
     }
-
 
 
     

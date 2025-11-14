@@ -107,6 +107,10 @@ Route::resource('order', OrderController::class);
 Route::prefix('order')->group(function () {
     Route::get('/semua/detail/{id}', [OrderController::class, 'show'])->name('order.semua.detail');
 });
+Route::get('/order/dijadwalkan/{id}', [OrderController::class, 'show'])->name('order.dijadwalkan');
+Route::get('/order/selesai/{id}', [OrderController::class, 'show'])->name('order.selesai');
+Route::get('/order/dibatalkan/{id}', [OrderController::class, 'show'])->name('order.dibatalkan');
+Route::get('/order/berlangsung/{id}', [OrderController::class, 'show'])->name('order.berlangsung');
 
 
 

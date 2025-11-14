@@ -40,4 +40,5 @@ class Order extends Model
     {
         return $this->belongsTo(Pelanggan::class, 'pelanggan_id');
     }
+
 }
