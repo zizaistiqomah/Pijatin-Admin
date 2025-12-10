@@ -73,9 +73,6 @@ Route::get('/superadmin/pelanggan/detail-akun', function () {
 
 
 
-
-
-
 //Orders
 Route::get('/order/semua', function (Request $request) {
     $search = $request->get('search');
@@ -89,7 +86,7 @@ Route::get('/order/semua', function (Request $request) {
         ->latest()
         ->get();
 
-    // Dikonfirmasi = pending, menunggu, berlangsung, dijadwalkan
+    // Dikonfirmasi = pending, menunggu, berlangsung, dijadwalkan 
     $confirmedOrders = Order::whereIn('status', ['pending', 'menunggu', 'berlangsung', 'dijadwalkan','selesai'])->get();
 
     // Dibatalkan = selesai
@@ -106,13 +103,12 @@ Route::resource('order', OrderController::class);
 //detail
 Route::prefix('order')->group(function () {
     Route::get('/semua/detail/{id}', [OrderController::class, 'show'])->name('order.semua.detail');
-});
+}); 
 Route::get('/order/dijadwalkan/{id}', [OrderController::class, 'show'])->name('order.dijadwalkan');
 Route::get('/order/selesai/{id}', [OrderController::class, 'show'])->name('order.selesai');
 Route::get('/order/dibatalkan/{id}', [OrderController::class, 'show'])->name('order.dibatalkan');
 Route::get('/order/berlangsung/{id}', [OrderController::class, 'show'])->name('order.berlangsung');
-
-
+ 
 
 //Terapis
 Route::get('/terapis', [TerapisController::class, 'terapis'])
@@ -149,6 +145,28 @@ Route::get('/data-pelanggan/akun/{id}', [PelangganController::class, 'detailAkun
 //riwayat pemesanan
 Route::get('/data-pelanggan/riwayat-pesanan/{id}', [PelangganController::class, 'riwayatPesanan'])
     ->name('pages.data-pelanggan.riwayat-pesanan');
+
+
+//rating & ulasan 
+Route::prefix('superadmin')->group(function () {
+    Route::get('/rating-ulasan', [RatingController::class, 'index'])->name('rating.index');
+});
+
+// DATA TERAPIS – RATING
+Route::get('/superadmin/data-terapis/rating', [RatingController::class, 'rating'])
+    ->name('data-terapis.rating');
+
+Route::get('/superadmin/data-terapis/rating/{id}', [RatingController::class, 'show'])
+    ->name('data-terapis.rating-detail'); // ← INI YANG BELUM ADA
+
+Route::delete('/superadmin/data-terapis/rating/delete/{id}', [RatingController::class, 'destroy'])
+    ->name('data-terapis.rating.delete');
+
+// Detail Rating
+Route::get('/superadmin/data-terapis/rating/{id}/detail', 
+    [RatingController::class, 'show']
+)->name('data-terapis.rating-detail');
+
 
 
 

@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('navtitle', 'Data Rating')
+@section('navtitle', 'Data Penangguhan')
 
 @section('content')
 <div class="bg-[#EBFFF2] min-h-screen">
     <!-- Header Judul -->
     <div class="mt-[14px] ml-[26px] mr-[26px] px-6 py-20 bg-[#EBFFF2]  flex justify-between items-center">
-        <h2 class="text-xl  font-bold text-gray-700">Data Rating</h2>
+        <h2 class="text-xl  font-bold text-gray-700">Data Akun Suspended</h2>
     </div>
 
     {{-- Container --}}
@@ -35,16 +35,17 @@
                 <thead class="text-semi bold bg-[#469D89] text-white">
                     <tr>
                         <th class="p-2">#</th>
-                        <th class="p-2">Nama Terapis</th>
-                        <th class="p-2">Jenis Layanan</th>
-                        <th class="p-2">Jadwal Layanan</th>
-                        <th class="p-2">Rating</th>
+                        <th class="p-2">Nama Lengkap</th>
+                        <th class="p-2">Jenis Kelamin</th>
+                        <th class="p-2">Tipe Pengguna</th>
+                        <th class="p-2">Tanggal</th>
+                        <th class="p-2">Status</th>
                         <th class="p-2">Aksi</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @forelse ($ulasan as $index => $r)
+                    @forelse ($penangguhan as $index => $r)
                         <tr class="hover:bg-gray-50">
 
                             {{-- Nomor --}}

@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Rating;
+use Illuminate\Support\Facades\DB;
+
 
 class RatingController extends Controller
 {
@@ -33,18 +35,31 @@ class RatingController extends Controller
     }
 
 
-    // detail satu ulasan (opsional)
+    // detail satu ulasan (
     public function show($id)
     {
-        $rating = Rating::with('terapis','customer')->findOrFail($id);
-        return view('pages.data-terapis.rating-detail', compact('rating'));
+        $rating = Rating::findOrFail($id);
+
+        // Ambil nama pelanggan berdasarkan id_pelanggan
+        $namaPelanggan = DB::table('pelanggans')
+            ->where('id', $rating->id_pelanggan)
+            ->value('nama');
+
+        return view('pages.data-terapis.rating-detail', [
+            'rating' => $rating,
+            'namaPelanggan' => $namaPelanggan
+        ]);
     }
 
-    // destroy (hapus) contoh
+
+    // destroy (hapus) 
     public function destroy($id)
     {
         $rating = Rating::findOrFail($id);
         $rating->delete();
         return redirect()->route('data-terapis.rating')->with('success','Ulasan dihapus.');
     }
+
+
+    
 }

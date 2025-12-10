@@ -26,6 +26,17 @@ class Rating extends Model
 
     public function customer()
     {
-        return $this->belongsTo(User::class, 'customer_id'); // kalau pakai users
+        return $this->belongsTo(User::class, 'customer_id'); 
+    }
+
+    public function pelanggan()
+    {
+        return $this->belongsTo(Pelanggan::class, 'id_pelanggan', 'id');
+    }
+
+
+    public function order()
+    {
+        return $this->belongsTo(User::class, 'order_id'); 
     }
 }

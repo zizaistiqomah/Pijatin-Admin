@@ -76,6 +76,7 @@ class OrderController extends Controller
         $hargaLayanan = $order->harga_layanan ?? 0;
         $hargaTambahan = $order->layanan_tambahan_harga ?? 0;
 
+
         // total biaya gabungan
         $order->total_harga = $hargaLayanan + $hargaTambahan;
 
@@ -97,7 +98,5 @@ class OrderController extends Controller
                 abort(404);
         }
     }
-
-
     
 }
