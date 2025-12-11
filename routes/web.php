@@ -10,6 +10,8 @@ use App\Models\Terapis;
 use App\Http\Controllers\TerapisController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PenangguhanController;
+use App\Http\Controllers\SuspendedController;
 
 // Routing Sidebar Super Admin
 Route::get('/', function () {
@@ -40,9 +42,6 @@ Route::get('/terapis', function () {
     return view('pages.SuperAdminTerapis');
 })->name('terapis');
 
-Route::get('/penangguhan', function () {
-    return view('pages.SuperAdminPenangguhan');
-})->name('penangguhan');
 
 Route::get('/aduan-pelanggan', function () {
     return view('pages.SuperAdminAduanPelanggan');
@@ -153,19 +152,36 @@ Route::prefix('superadmin')->group(function () {
 });
 
 // DATA TERAPIS – RATING
-Route::get('/superadmin/data-terapis/rating', [RatingController::class, 'rating'])
+Route::get('/data-terapis/rating', [RatingController::class, 'rating'])
     ->name('data-terapis.rating');
 
-Route::get('/superadmin/data-terapis/rating/{id}', [RatingController::class, 'show'])
+Route::get('/data-terapis/rating/{id}', [RatingController::class, 'show'])
     ->name('data-terapis.rating-detail'); // ← INI YANG BELUM ADA
 
-Route::delete('/superadmin/data-terapis/rating/delete/{id}', [RatingController::class, 'destroy'])
+Route::delete('/data-terapis/rating/delete/{id}', [RatingController::class, 'destroy'])
     ->name('data-terapis.rating.delete');
 
 // Detail Rating
-Route::get('/superadmin/data-terapis/rating/{id}/detail', 
+Route::get('/data-terapis/rating/{id}/detail', 
     [RatingController::class, 'show']
 )->name('data-terapis.rating-detail');
+
+
+
+//suspended (penangguhan)
+Route::get('/suspended', [SuspendedController::class, 'index'])
+     ->name('suspended');
+Route::get('/suspended/{id}', [SuspendedController::class, 'show'])->name('suspended.show');
+Route::delete('/suspended/{id}', [SuspendedController::class, 'destroy'])->name('suspended.destroy');
+
+
+
+
+
+
+
+
+
 
 
 
