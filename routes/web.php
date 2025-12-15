@@ -12,6 +12,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenangguhanController;
 use App\Http\Controllers\SuspendedController;
+use App\Http\Controllers\ReportController;
 
 // Routing Sidebar Super Admin
 Route::get('/', function () {
@@ -171,8 +172,16 @@ Route::get('/data-terapis/rating/{id}/detail',
 //suspended (penangguhan)
 Route::get('/suspended', [SuspendedController::class, 'index'])
      ->name('suspended');
-Route::get('/suspended/{id}', [SuspendedController::class, 'show'])->name('suspended.show');
+Route::get('/suspended/{id}', [SuspendedController::class, 'show'])
+     ->name('suspended.show');
+
 Route::delete('/suspended/{id}', [SuspendedController::class, 'destroy'])->name('suspended.destroy');
+
+
+//Report 
+Route::get('/report', [ReportController::class, 'index'])->name('report');
+
+
 
 
 
