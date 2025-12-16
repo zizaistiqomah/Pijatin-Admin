@@ -215,7 +215,8 @@
 
             <!-- Aduan Pelanggan -->
             <li>
-                <a href="{{ route('aduan-pelanggan') }}" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-teal-400 transition-colors duration-200 {{ request()->routeIs('aduan-pelanggan*') ? 'bg-white text-teal-600' : 'text-teal-600' }}">
+                <a href="{{ route('report') }}" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-teal-400 transition-colors duration-200 
+                {{ request()->routeIs('report') ? 'bg-white text-teal-600' : 'text-teal-600' }}">
                     <svg class="w-5 h-5 fill-none stroke-current" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 3.125L1.25 26.875H28.75L15 3.125Z" stroke-width="2.5" stroke-linejoin="round"/>
                         <path d="M15 21.875V22.5M15 11.875L15.005 18.125" stroke-width="2.5" stroke-linecap="round"/>

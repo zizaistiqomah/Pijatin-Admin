@@ -180,6 +180,9 @@ Route::delete('/suspended/{id}', [SuspendedController::class, 'destroy'])->name(
 
 //Report 
 Route::get('/report', [ReportController::class, 'index'])->name('report');
+Route::get('/report/{id}', [ReportController::class, 'show'])->name('report.detail');
+Route::delete('/report/{id}', [ReportController::class, 'destroy'])->name('report.delete');
+
 
 
 
