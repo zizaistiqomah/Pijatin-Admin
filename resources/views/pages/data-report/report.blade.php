@@ -57,7 +57,7 @@
                             {{-- AKSI --}}
                             <td class="px-4 py-2 flex space-x-3">
                                 {{-- Detail --}}
-                                <a href="{{ route('report.detail', $report->id) }}" class="text-blue-500 hover:text-blue-700">
+                                <a href="{{ route('report.show', $report->id) }}" class="text-blue-500 hover:text-blue-700">
                                     <img src="{{ asset('images/detail-icon.png') }}" class="h-6 w-6">
                                 </a>
 
@@ -71,7 +71,7 @@
                                 </button>
 
                                 <form id="delete-form-{{ $report->id }}"
-                                      action="{{ route('report.delete', $report->id) }}"
+                                      action="{{ route('report.destroy', $report->id) }}"
                                       method="POST" style="display:none;">
                                     @csrf
                                     @method('DELETE')

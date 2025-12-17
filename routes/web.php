@@ -178,10 +178,28 @@ Route::get('/suspended/{id}', [SuspendedController::class, 'show'])
 Route::delete('/suspended/{id}', [SuspendedController::class, 'destroy'])->name('suspended.destroy');
 
 
-//Report 
-Route::get('/report', [ReportController::class, 'index'])->name('report');
-Route::get('/report/{id}', [ReportController::class, 'show'])->name('report.detail');
-Route::delete('/report/{id}', [ReportController::class, 'destroy'])->name('report.delete');
+//Reporttt
+Route::get('/report-alias', function () {
+    return redirect()->route('report.index');
+})->name('report');
+
+Route::prefix('report')->group(function () {
+    Route::get('/', [ReportController::class, 'index'])
+        ->name('report.index');
+
+    Route::get('/{id}', [ReportController::class, 'show'])
+        ->name('report.show');
+
+    Route::post('/{id}/warning', [ReportController::class, 'sendWarning'])
+        ->name('report.warning');
+
+    Route::post('/{id}/suspend', [ReportController::class, 'suspendAccount'])
+        ->name('report.suspend');
+
+    Route::delete('/{id}', [ReportController::class, 'destroy'])
+        ->name('report.destroy');
+});
+
 
 
 
