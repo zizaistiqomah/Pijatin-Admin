@@ -5,5 +5,5 @@
 @section('page-description', 'Ringkasan statistik dan aktivitas terkini sistem Pijat.in')
 
 @section('content')
-    <h1>Super Admin Dashboard</h1>
+    <h1>Admin Dashboard</h1>
 @endsection
